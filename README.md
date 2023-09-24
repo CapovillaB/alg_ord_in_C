@@ -10,4 +10,3 @@ Bruno Capovila
 Wyver Godoy
 Matheus
 Luan
-
