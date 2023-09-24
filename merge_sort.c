@@ -29,7 +29,7 @@ void menu()	 /* Menu de entrada REFAZER!!! */
 
   int IN;
 
-  printf("Boa noite!\nPor favor, escolha o algorÃ­timo de ordenaÃ§Ã£o:\n1 - \n2 - \n3 - \n4 - Sair\n");
+  printf("Boa noite!\nPor favor, escolha o algorítimo de ordenação:\n1 - \n2 - \n3 - \n4 - Sair\n");
   scanf("%d", &IN);
 
   switch(IN)
@@ -57,7 +57,7 @@ void menu()	 /* Menu de entrada REFAZER!!! */
     }
 }
 
-int nomear_arq() /* LÃª e cria os nomes dos arquivos e tamanho de vetores */
+int nomear_arq() /* Lê e cria os nomes dos arquivos e tamanho de vetores */
 {
   printf("Por favor, dÃª o nome do arquivo:\n");
   scanf("%s", &ent_nome);
@@ -105,7 +105,7 @@ int salvarArquivo() /* Salva o arquivo */
     arq_saida = fopen(nome_arq_saida, "w");
     if(nome_arq_saida_arq == NULL)||(arq_entrada == NULL)
     {
-        printf ("Erro na criaÃ§Ã£o do arquivo!\a");
+        printf ("Erro na criação do arquivo!\a");
         return 1;
     }
 
@@ -122,4 +122,7 @@ int salvarArquivo() /* Salva o arquivo */
 }
 
 int create_vets(int arg)
+{
+  
+}
 
