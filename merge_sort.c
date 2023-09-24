@@ -10,7 +10,7 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include <stdlib.h>
 #define true 1;
 #define false 0;
-
+//teste
 int main()
 {
   /* variaveis globais */
