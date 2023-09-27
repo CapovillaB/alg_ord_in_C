@@ -35,15 +35,15 @@ void menu()	 /* Menu de entrada REFAZER!!! */
   switch(IN)
     {
     case 1:
-      primAlg();
+      bubble_sort();
       break;
 
     case 2:
-      segAlg();
+      merge_sort();
       break;
 
     case 3:
-      terAlg();
+      quick_sort();
       break;
 
     case 4:
@@ -59,9 +59,9 @@ void menu()	 /* Menu de entrada REFAZER!!! */
 
 int nomear_arq() /* Lê e cria os nomes dos arquivos e tamanho de vetores */
 {
-  printf("Por favor, dÃª o nome do arquivo:\n");
+  printf("Por favor, insira o nome do arquivo:\n");
   scanf("%s", &ent_nome);
-  printf("Por favor, dÃª o nÃºmero de linhas do arquivo:\n");
+  printf("Por favor, insira o numero de linhas do arquivo:\n");
   scanf("%d", &vet_size);
     
   nome_arq_ent = ("%s.txt", &ent_nome);
@@ -84,17 +84,19 @@ int lerArquivo() /*Abrir e ler arquivo */
   arq_entrada = fopen(nome_arq_ent, "r");
   if(arq_entrada == NULL)
     {
-      printf ("Erro na abertura do arquivo!\a");
+      printf ("Erro na abertura do arquivo!\n\a");
       return 1;
     }     
 
   int linha; //buffer de entrada
   int i = 0;
-  while (fscanf(arq_entrada, "%d", &linha) != NULL) // alimenta o vetor de entrada
-  {
-    vet_ent[i] = linha;
-    i++;
-  }
+  fscanf (arq_entrada, "%d", &linha);
+  while (!feof (arq_entrada))
+    {
+      vet[i] = linha;
+      i++;
+      fscanf (arq_entrada, "%d", &linha);
+    }
 
   fclose(arq_entrada);
   return 0;
@@ -103,26 +105,79 @@ int lerArquivo() /*Abrir e ler arquivo */
 int salvarArquivo() /* Salva o arquivo */
 {
     arq_saida = fopen(nome_arq_saida, "w");
-    if(nome_arq_saida_arq == NULL)||(arq_entrada == NULL)
+    if(nome_arq_saida == NULL)
     {
-        printf ("Erro na criação do arquivo!\a");
+        printf ("Erro na criação do arquivo!\n\a");
         return 1;
     }
-
+  fprintf(arq_saida, "%d\n", vet[i]);
     
-    for(int i=0, i < sizeof(vet), i++)
-    {
-        fprintf(arq_saida, "%d/n", vet[i]); // corrigir
-    }
-    fclose(arq_saida);
+  for(int i=0; i <= sizeof(vet); i++)
+  {
+    fprintf(arq_saida, "%d\n", vet[i]); // corrigir
+  }
+  fclose(arq_saida);
   
-    printf("Dados gravados com sucesso!");
+  printf("Dados gravados com sucesso!");
   
-    return 0;
+  return 0;
 }
 
-int create_vets(int arg)
+void create_vets(int n)
 {
-  
+  int *vet = (int *) malloc (n * sizeof (int));
+  i = 0;
+  aux = 0;
+  printf ("Vetor criado\n");
 }
 
+int bubble(int[] v, int n)
+{
+  int aux = 0;
+  int i = 0;
+  int j = 0;
+  int cont = 0;
+
+  for (i = 0; i < n; i++)
+    {
+      for (j = 0; j < n - i - 1; j++)
+	{
+	  if (v[j] > v[j + 1])
+	    {
+	      aux = v[j];
+	      v[j] = v[j + 1];
+	      v[j + 1] = aux;
+	      cont++;
+	    }
+	}
+    }
+    return cont;
+}
+
+int merge(int[] v, int n)
+{
+  int aux = 0;
+  int i = 0;
+  int j = 0;
+  int cont = 0;
+
+
+
+
+
+  return cont;
+}
+
+int quick(int[] v, int n)
+{
+  int aux = 0;
+  int i = 0;
+  int j = 0;
+  int cont = 0;
+
+
+
+
+  
+  return cont;
+}
