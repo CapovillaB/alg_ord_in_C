@@ -13,71 +13,23 @@ Write your code in this editor and press "Run" button to compile and execute it.
 
 // variaveis globais
 FILE *arq_entrada, *arq_saida;
-char nome_arq_ent[16] = "";
-char nome_arq_saida[16] = "";
-char ent_nome[12] = "";
+char *nome_arq_ent;
+char *nome_arq_saida;
+char *ent_nome;
 int count = 0;
 int vet_size = 0;
-int vet[];
-
-// teste
-int main()
-{
-  menu();
-  return 0;
-}
-
-void menu() // Menu de entrada REFAZER!!!
-{
-
-  int IN;
-
-  printf("Boa noite!\nPor favor, escolha o algorítimo de ordenação:\n1 - \n2 - \n3 - \n4 - Sair\n");
-  scanf("%d", &IN);
-
-  switch (IN)
-  {
-  case 1:
-    bubble_sort();
-    break;
-
-  case 2:
-    merge_sort();
-    break;
-
-  case 3:
-    quick_sort();
-    break;
-
-  case 4:
-    printf("Saindo!");
-    exit(0);
-    break;
-
-  default:
-    menu();
-    break;
-  }
-}
+int *vet = (int*)malloc(vet_size*sizeof(int));
 
 void nomearArquivo() // Lê e cria os nomes dos arquivos e tamanho de vetores
 {
   printf("Por favor, insira o nome do arquivo:\n");
-  scanf("%s", &ent_nome);
+  scanf("%s", ent_nome);
   printf("Por favor, insira o numero de linhas do arquivo:\n");
   scanf("%d", &vet_size);
 
-  nome_arq_ent = ("%s.txt", &ent_nome);
-  nome_arq_saida = ("%s (ordenado).txt", &ent_nome);
+  nome_arq_ent = ("%s.txt", ent_nome);
+  nome_arq_saida = ("%s (ordenado).txt", ent_nome);
 
-  if (nome_arq_ent != NULL && nome_arq_saida != NULL)
-  {
-    menu();
-  }
-  else
-  {
-    criarVetor(vet_size);
-  }
 }
 
 void lerArquivo() // Abre e le o arquivo
@@ -111,7 +63,7 @@ void salvarArquivo() // Salva o arquivo com vetor ordenado e número de iteraç�
   }
   fprintf(arq_saida, "iterações: %d\n\n", count);
 
-  for (int i = 0; i <= sizeof(vet); i++)
+  for (int i = 0; i <= vet_size; i++)
   {
     fprintf(arq_saida, "%d\n", vet[i]); // corrigir
   }
@@ -120,11 +72,7 @@ void salvarArquivo() // Salva o arquivo com vetor ordenado e número de iteraç�
   printf("Dados gravados com sucesso!");
 }
 
-void criarVetor(int n)
-{
-  vet = (int *)malloc(n * sizeof(int));
-  printf("Vetor criado\n");
-}
+
 
 void swap(int *a, int *b) // swap para os sorts
 {
@@ -155,7 +103,7 @@ int particao(int v[], int a, int b) // para o quick()
 
 void mergesort(int v[], int ini, int fim)
 {
-    if (l < r) {
+    if (ini < fim) {
         int meio = ini + (fim - ini) / 2;
  
         // ordena as duas metades
@@ -166,7 +114,7 @@ void mergesort(int v[], int ini, int fim)
     }
 }
 
-void bubble(int[] v, int n)
+void bubble(int v[], int n)
 {
   int i = 0;
   int j = 0;
@@ -177,7 +125,7 @@ void bubble(int[] v, int n)
     {
       if (v[j] > v[j + 1])
       {
-        swap(v[j], v[j + 1]);
+        swap(*v[j], *v[j + 1]);
         count++;
       }
     }
@@ -198,7 +146,7 @@ void merge(int v[], int ini, int meio, int fim)
 
   for (i = 0; i < n1; i++) // copia os dados do vetor origem para os temporarios
   {
-    L[i] = v[l + i];
+    L[i] = v[ini + i];
   }
   for (j = 0; j < n2; j++)
   {
@@ -283,4 +231,46 @@ void merge_sort()
   mergesort(vet, 0, vet_size);
   salvarArquivo();
   menu();
+}
+
+
+int menu() // Menu de entrada REFAZER!!!
+{
+
+  int IN;
+
+  printf("Boa noite!\nPor favor, escolha o algorítimo de ordenação:\n1 - \n2 - \n3 - \n4 - Sair\n");
+  scanf("%d", &IN);
+
+  switch (IN)
+  {
+  case 1:
+    bubble_sort();
+    break;
+
+  case 2:
+    merge_sort();
+    break;
+
+  case 3:
+    quick_sort();
+    break;
+
+  case 4:
+    printf("Saindo!");
+    exit(0);
+    break;
+
+  default:
+    menu();
+    break;
+  }
+}
+
+
+// teste
+int main()
+{
+  menu();
+  return 0;
 }
