@@ -1,24 +1,22 @@
-/******************************************************************************
-
-                            Online C Compiler.
-                Code, Compile, Run and Debug C program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define true 1;
 #define false 0;
 
 // variaveis globais
 FILE *arq_entrada, *arq_saida;
-char *nome_arq_ent;
-char *nome_arq_saida;
-char *ent_nome;
+char nome_arq_ent[30];
+char nome_arq_saida[30];
+char ent_nome[20];
 int count = 0;
 int vet_size = 0;
-int *vet = (int*)malloc(vet_size*sizeof(int));
+int* vet;
+
+
+void merge(int v[], int ini, int meio, int fim);
+void menu();
 
 void nomearArquivo() // Lê e cria os nomes dos arquivos e tamanho de vetores
 {
@@ -26,9 +24,21 @@ void nomearArquivo() // Lê e cria os nomes dos arquivos e tamanho de vetores
   scanf("%s", ent_nome);
   printf("Por favor, insira o numero de linhas do arquivo:\n");
   scanf("%d", &vet_size);
+  
+  char *txt = ".txt";
+  char *ordenado = "(ordenado).txt";
 
-  nome_arq_ent = ("%s.txt", ent_nome);
-  nome_arq_saida = ("%s (ordenado).txt", ent_nome);
+  strcpy (nome_arq_ent, ent_nome);
+  strcat(nome_arq_ent, txt);
+  strcpy (nome_arq_saida, ent_nome);
+  strcat(nome_arq_saida, ordenado);
+  
+  
+  printf("entrada: '%s'\n", nome_arq_ent);
+  printf("saida: '%s'\n" , nome_arq_saida);
+  
+  
+  vet = realloc(vet, vet_size * sizeof(int));
 
 }
 
@@ -125,7 +135,7 @@ void bubble(int v[], int n)
     {
       if (v[j] > v[j + 1])
       {
-        swap(*v[j], *v[j + 1]);
+        swap(&v[j], &v[j + 1]);
         count++;
       }
     }
@@ -207,6 +217,7 @@ void bubble_sort()
 {
 
   nomearArquivo();
+
   lerArquivo();
   bubble(vet, vet_size);
   salvarArquivo();
@@ -217,6 +228,7 @@ void quick_sort()
 {
 
   nomearArquivo();
+
   lerArquivo();
   quick(vet, 0, vet_size);
   salvarArquivo();
@@ -227,6 +239,7 @@ void merge_sort()
 {
 
   nomearArquivo();
+ 
   lerArquivo();
   mergesort(vet, 0, vet_size);
   salvarArquivo();
@@ -234,12 +247,12 @@ void merge_sort()
 }
 
 
-int menu() // Menu de entrada REFAZER!!!
+void menu() // Menu de entrada
 {
 
   int IN;
 
-  printf("Boa noite!\nPor favor, escolha o algorítimo de ordenação:\n1 - \n2 - \n3 - \n4 - Sair\n");
+  printf("Boa noite!\nPor favor, escolha o algorítimo de ordenação:\n1 - BubbleSort \n2 - MergeSort\n3 - QuickSort\n4 - Sair\n");
   scanf("%d", &IN);
 
   switch (IN)
@@ -268,7 +281,7 @@ int menu() // Menu de entrada REFAZER!!!
 }
 
 
-// teste
+// Driver
 int main()
 {
   menu();
