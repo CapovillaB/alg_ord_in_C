@@ -7,8 +7,6 @@ Trata-se de uma comparação de três algoritimos, com bases de dados de tamanho
 Trabalho com participação de:
 
 Bruno Capovila
-Wyver Godoy
+Wyver Godoi
 Matheus
-Luan
-
-ze da cuca
+Luan Ladeira Victoni
