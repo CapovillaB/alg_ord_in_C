@@ -1,5 +1,5 @@
 /* APS 4º SEMESTRE - UNIP - Estrutura de Dados - Prof. Luiz Forçan e Prof. Alvaro Nunes */
-// Algoritimos de ordenação em linguagem C
+// Algoritimos de ordenação de arquivos númericos txt em linguagem C.
 
 
 #include <stdio.h>
@@ -11,7 +11,7 @@ FILE *arq_entrada, *arq_saida;
 char nome_arq_ent[30];
 char nome_arq_saida[30];
 char ent_nome[20];
-char st[2];
+char st[5];
 int count = 0;
 int vet_size = 0;
 int* vet;
@@ -28,12 +28,12 @@ void nomearArquivo() // Lê e cria os nomes dos arquivos e tamanho de vetores
   scanf("%d", &vet_size);
   
   char *txt = ".txt";
-  char *ordenado = "(ord).txt";
+  char *ordenado = " ord).txt";
 
   strcpy (nome_arq_ent, ent_nome);
   strcat(nome_arq_ent, txt);
-  strcpy (nome_arq_saida, st);
   strcpy (nome_arq_saida, ent_nome);
+  strcat (nome_arq_saida, st);
   strcat(nome_arq_saida, ordenado);
   
   
@@ -74,7 +74,7 @@ void salvarArquivo() // Salva o arquivo com vetor ordenado e número de iteraç�
   {
     printf("Erro na criação do arquivo!\n\a");
   }
-  fprintf(arq_saida, "iterações: %d\n\n", count);
+  fprintf(arq_saida, "Iterações: %d\n\n", count);
 
   for (int i = 0; i <= vet_size; i++)
   {
@@ -111,6 +111,7 @@ int particao(int v[], int a, int b) // para o quick()
     }
   }
   swap(&v[i + 1], &v[b]);
+  count++;
   return (i + 1);
 }
 
@@ -190,6 +191,7 @@ void merge(int v[], int ini, int meio, int fim)
     v[k] = L[i];
     i++;
     k++;
+    count++;
   }
 
   while (j < n2) //copia para vetor original o que sobro no vetor temporario RIGHT
@@ -197,6 +199,7 @@ void merge(int v[], int ini, int meio, int fim)
     v[k] = R[j];
     j++;
     k++;
+    count++;
   }
 }
 
@@ -223,7 +226,7 @@ void bubble_sort()
   lerArquivo();
   bubble(vet, vet_size);
   salvarArquivo();
-  menu();
+  exit(0);
 }
 
 void quick_sort()
@@ -233,7 +236,7 @@ void quick_sort()
   lerArquivo();
   quick(vet, 0, vet_size);
   salvarArquivo();
-  menu();
+  exit(0);
 }
 
 void merge_sort()
@@ -243,7 +246,7 @@ void merge_sort()
   lerArquivo();
   mergesort(vet, 0, vet_size);
   salvarArquivo();
-  menu();
+  exit(0);
 }
 
 
@@ -258,18 +261,18 @@ void menu() // Menu de entrada
   switch (IN)
   {
   case 1:
+    strcpy(st, "(BS");
     bubble_sort();
-    st = "BS";
     break;
 
   case 2:
+   strcpy(st, "(MS");
     merge_sort();
-    st = "MS";
     break;
 
   case 3:
+   strcpy(st, "(QS");
     quick_sort();
-    st = "QS";
     break;
 
   case 4:
