@@ -1,15 +1,17 @@
+/* APS 4º SEMESTRE - UNIP - Estrutura de Dados - Prof. Luiz Forçan e Prof. Alvaro Nunes */
+// Algoritimos de ordenação em linguagem C
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define true 1;
-#define false 0;
 
 // variaveis globais
 FILE *arq_entrada, *arq_saida;
 char nome_arq_ent[30];
 char nome_arq_saida[30];
 char ent_nome[20];
+char st[2];
 int count = 0;
 int vet_size = 0;
 int* vet;
@@ -26,10 +28,11 @@ void nomearArquivo() // Lê e cria os nomes dos arquivos e tamanho de vetores
   scanf("%d", &vet_size);
   
   char *txt = ".txt";
-  char *ordenado = "(ordenado).txt";
+  char *ordenado = "(ord).txt";
 
   strcpy (nome_arq_ent, ent_nome);
   strcat(nome_arq_ent, txt);
+  strcpy (nome_arq_saida, st);
   strcpy (nome_arq_saida, ent_nome);
   strcat(nome_arq_saida, ordenado);
   
@@ -217,7 +220,6 @@ void bubble_sort()
 {
 
   nomearArquivo();
-
   lerArquivo();
   bubble(vet, vet_size);
   salvarArquivo();
@@ -228,7 +230,6 @@ void quick_sort()
 {
 
   nomearArquivo();
-
   lerArquivo();
   quick(vet, 0, vet_size);
   salvarArquivo();
@@ -238,8 +239,7 @@ void quick_sort()
 void merge_sort()
 {
 
-  nomearArquivo();
- 
+  nomearArquivo(); 
   lerArquivo();
   mergesort(vet, 0, vet_size);
   salvarArquivo();
@@ -259,14 +259,17 @@ void menu() // Menu de entrada
   {
   case 1:
     bubble_sort();
+    st = "BS";
     break;
 
   case 2:
     merge_sort();
+    st = "MS";
     break;
 
   case 3:
     quick_sort();
+    st = "QS";
     break;
 
   case 4:
