@@ -9,6 +9,6 @@ Trabalho com participação de:
 Bruno Capovila
 Wyver Godoy
 Matheus
-Luan
+Luan Ladeira Victoni
 filho da mae
 ze da cuca
