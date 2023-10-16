@@ -224,9 +224,13 @@ void bubble_sort()
 
   nomearArquivo();
   lerArquivo();
+  clock_t start_time = clock(); // Registra o tempo inicial
   bubble(vet, vet_size);
+  clock_t end_time = clock(); // Registra o tempo final
+  double elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+  printf("Tempo de execução: %.6f segundos\n", elapsed_time);
   salvarArquivo();
-  exit(0);
+  menu();
 }
 
 void quick_sort()
@@ -234,19 +238,26 @@ void quick_sort()
 
   nomearArquivo();
   lerArquivo();
+  clock_t start_time = clock();
   quick(vet, 0, vet_size);
+  clock_t end_time = clock();
+  double elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+  printf("Tempo de execução: %.6f segundos\n", elapsed_time);
   salvarArquivo();
-  exit(0);
+  menu();
 }
 
 void merge_sort()
 {
-
-  nomearArquivo(); 
+nomearArquivo(); 
   lerArquivo();
+  clock_t start_time = clock();
   mergesort(vet, 0, vet_size);
+  clock_t end_time = clock();
+  double elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+  printf("Tempo de execução: %.6f segundos\n", elapsed_time);
   salvarArquivo();
-  exit(0);
+  menu();
 }
 
 
