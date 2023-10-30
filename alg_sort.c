@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 // variaveis globais
 FILE *arq_entrada, *arq_saida;
